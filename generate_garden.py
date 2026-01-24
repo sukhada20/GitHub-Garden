@@ -5,7 +5,7 @@ from datetime import datetime
 
 # ===================== CONFIG =====================
 
-USERNAME = "sukhada20" 
+USERNAME = "<YOUR_GITHUB_USERNAME>"  # CHANGE THIS
 TOKEN = os.environ["GH_TOKEN"]
 
 BLOCK_SIZE = 14
@@ -116,7 +116,7 @@ def flower_svg(cx, cy, count, delay):
     </g>
     """
 
-# ===================== SVG GENERATION WITH MONTH LABELS =====================
+# ===================== SVG GENERATION WITH CORRECT MONTH LABELS =====================
 
 def generate_svg(days):
     width = WEEKS * (BLOCK_SIZE + GAP)
@@ -131,10 +131,17 @@ def generate_svg(days):
     col = 0
     row = 0
     delay = 0.0
-    last_month = None
-    month_drawn = set()
+    first_day_of_month = {}
 
-    for d in days:
+    # Precompute the first column of each month
+    for i, d in enumerate(days):
+        date_obj = datetime.strptime(d["date"], "%Y-%m-%d")
+        if date_obj.month not in first_day_of_month:
+            # Compute column for this day
+            col_idx = i // DAYS
+            first_day_of_month[date_obj.month] = col_idx
+
+    for i, d in enumerate(days):
         x = col * (BLOCK_SIZE + GAP)
         y = row * (BLOCK_SIZE + GAP) + 20  # offset for month labels
 
@@ -145,24 +152,21 @@ def generate_svg(days):
 
         tooltip = f"{date_str} — {count} contribution{'s' if count != 1 else ''}"
 
-        # Month separator & label (only draw once per month)
-        if date_obj.month != last_month:
-            if date_obj.month not in month_drawn:
-                # Vertical dashed line for month
-                svg.append(
-                    f'<line x1="{x-2}" y1="20" x2="{x-2}" y2="{height}" '
-                    f'stroke="#8e44ad" stroke-width="1" stroke-dasharray="2,2" />'
-                )
-                # Month label
-                month_label = date_obj.strftime("%b")
-                svg.append(
-                    f'<text x="{x}" y="14" font-size="10" fill="#5E3A8C" font-family="sans-serif">{month_label}</text>'
-                )
-                month_drawn.add(date_obj.month)
-            last_month = date_obj.month
+        # Month label & separator
+        if col == first_day_of_month[date_obj.month]:
+            # Month label
+            month_label = date_obj.strftime("%b")
+            svg.append(
+                f'<text x="{x}" y="14" font-size="10" fill="#5E3A8C" font-family="sans-serif">{month_label}</text>'
+            )
+            # Optional vertical line
+            svg.append(
+                f'<line x1="{x-2}" y1="20" x2="{x-2}" y2="{height}" '
+                f'stroke="#8e44ad" stroke-width="1" stroke-dasharray="2,2" />'
+            )
 
         # Group block + tooltip + flower
-        svg.append(f'<g>')
+        svg.append('<g>')
         svg.append(f'<title>{tooltip}</title>')
 
         # Day block with border
