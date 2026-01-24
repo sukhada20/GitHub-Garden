@@ -1,10 +1,32 @@
-import requests
-from datetime import datetime, timedelta
-import math
 import os
+import math
+import requests
+from datetime import datetime
 
+# ===================== CONFIG =====================
+
+USERNAME = "sukhada20"  
 TOKEN = os.environ["GH_TOKEN"]
-USERNAME = "sukhada20"
+
+BLOCK_SIZE = 14
+GAP = 4
+WEEKS = 53
+DAYS = 7
+
+BACKGROUND = "#F6F0FA"
+
+LILAC_SCALE = [
+    "#F6F0FA",  # 0
+    "#E6D9F2",  # 1–2
+    "#C8AEE6",  # 3–5
+    "#A57BD8",  # 6–9
+    "#7E57C2",  # 10+
+]
+
+FLOWER_PETAL = "#B79AD9"
+FLOWER_CENTER = "#5E3A8C"
+
+# ===================== GITHUB QUERY =====================
 
 API_URL = "https://api.github.com/graphql"
 
@@ -29,50 +51,53 @@ HEADERS = {
     "Authorization": f"Bearer {TOKEN}"
 }
 
-LILAC_SCALE = [
-    "#F6F0FA",  # 0 contributions (very light)
-    "#E6D9F2",  # 1–2
-    "#C8AEE6",  # 3–5
-    "#A57BD8",  # 6–9
-    "#7E57C2"   # 10+
-]
-
-def block_color(count):
-    if count == 0:
-        return LILAC_SCALE[0]
-    elif count <= 2:
-        return LILAC_SCALE[1]
-    elif count <= 5:
-        return LILAC_SCALE[2]
-    elif count <= 9:
-        return LILAC_SCALE[3]
-    else:
-        return LILAC_SCALE[4]
+# ===================== DATA =====================
 
 def fetch_contributions():
     r = requests.post(
         API_URL,
         json={"query": QUERY, "variables": {"login": USERNAME}},
-        headers=HEADERS
+        headers=HEADERS,
+        timeout=30
     )
-    data = r.json()
+    r.raise_for_status()
+
+    weeks = r.json()["data"]["user"]["contributionsCollection"][
+        "contributionCalendar"
+    ]["weeks"]
+
     days = []
-    for week in data["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]:
-        for d in week["contributionDays"]:
+    for w in weeks:
+        for d in w["contributionDays"]:
             days.append(d)
-    return days
+
+    return days[-(WEEKS * DAYS):]
+
+# ===================== VISUAL LOGIC =====================
+
+def block_color(count):
+    if count == 0:
+        return LILAC_SCALE[0]
+    if count <= 2:
+        return LILAC_SCALE[1]
+    if count <= 5:
+        return LILAC_SCALE[2]
+    if count <= 9:
+        return LILAC_SCALE[3]
+    return LILAC_SCALE[4]
 
 def flower_svg(cx, cy, count, delay):
     petals = min(6 + count, 10)
-    radius = min(4 + count, 10)
-    color = "#A57BD8"
+    radius = min(3 + count, 8)
 
-    petals_svg = ""
+    petals_svg = []
     for i in range(petals):
         angle = 2 * math.pi * i / petals
         px = cx + math.cos(angle) * radius
         py = cy + math.sin(angle) * radius
-        petals_svg += f'<circle cx="{px}" cy="{py}" r="3" fill="{color}" />'
+        petals_svg.append(
+            f'<circle cx="{px}" cy="{py}" r="2.6" fill="{FLOWER_PETAL}" />'
+        )
 
     return f"""
     <g transform="scale(0)" style="transform-origin:{cx}px {cy}px">
@@ -81,23 +106,24 @@ def flower_svg(cx, cy, count, delay):
         type="scale"
         from="0"
         to="1"
-        begin="{delay}s"
+        begin="{delay:.2f}s"
         dur="0.6s"
         fill="freeze" />
-      {petals_svg}
-      <circle cx="{cx}" cy="{cy}" r="3" fill="#5E3A8C"/>
+      {''.join(petals_svg)}
+      <circle cx="{cx}" cy="{cy}" r="2.8" fill="{FLOWER_CENTER}" />
     </g>
     """
 
+# ===================== SVG GENERATION =====================
+
 def generate_svg(days):
-    block = 14
-    gap = 4
-    width = 53 * (block + gap)
-    height = 7 * (block + gap)
+    width = WEEKS * (BLOCK_SIZE + GAP)
+    height = DAYS * (BLOCK_SIZE + GAP)
 
     svg = [
+        f"<!-- regenerated at {datetime.utcnow().isoformat()} -->",
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}">',
-        '<rect width="100%" height="100%" fill="#F6F0FA"/>'
+        f'<rect width="100%" height="100%" fill="{BACKGROUND}" />'
     ]
 
     col = 0
@@ -105,28 +131,39 @@ def generate_svg(days):
     delay = 0.0
 
     for d in days:
-        x = col * (block + gap)
-        y = row * (block + gap)
+        x = col * (BLOCK_SIZE + GAP)
+        y = row * (BLOCK_SIZE + GAP)
 
-        color = block_color(d["contributionCount"])
+        count = d["contributionCount"]
+        color = block_color(count)
 
-        # Block (streak indicator)
+        # Base block (streak clarity)
         svg.append(
-            f'<rect x="{x}" y="{y}" width="{block}" height="{block}" '
-            f'rx="3" ry="3" fill="{color}"/>'
+            f'<rect x="{x}" y="{y}" '
+            f'width="{BLOCK_SIZE}" height="{BLOCK_SIZE}" '
+            f'rx="3" ry="3" fill="{color}" />'
         )
 
         # Flower bloom overlay
-        if d["contributionCount"] > 0:
-            cx = x + block / 2
-            cy = y + block / 2
-            svg.append(flower_svg(cx, cy, d["contributionCount"], delay))
-            delay += 0.02
+        if count > 0:
+            cx = x + BLOCK_SIZE / 2
+            cy = y + BLOCK_SIZE / 2
+            svg.append(flower_svg(cx, cy, count, delay))
+            delay += 0.025
 
         row += 1
-        if row == 7:
+        if row == DAYS:
             row = 0
             col += 1
 
     svg.append("</svg>")
     return "\n".join(svg)
+
+# ===================== MAIN =====================
+
+if __name__ == "__main__":
+    days = fetch_contributions()
+    svg = generate_svg(days)
+
+    with open("garden.svg", "w", encoding="utf-8") as f:
+        f.write(svg)
