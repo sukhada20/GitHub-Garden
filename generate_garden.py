@@ -5,7 +5,7 @@ from datetime import datetime
 
 # ===================== CONFIG =====================
 
-USERNAME = "sukhada20"  
+USERNAME = "sukhada20"
 TOKEN = os.environ["GH_TOKEN"]
 
 BLOCK_SIZE = 14
@@ -116,11 +116,11 @@ def flower_svg(cx, cy, count, delay):
     </g>
     """
 
-# ===================== SVG GENERATION WITH CORRECT MONTH LABELS =====================
+# ===================== SVG GENERATION =====================
 
 def generate_svg(days):
     width = WEEKS * (BLOCK_SIZE + GAP)
-    height = DAYS * (BLOCK_SIZE + GAP) + 20  # extra space for month labels
+    height = DAYS * (BLOCK_SIZE + GAP)
 
     svg = [
         f"<!-- regenerated at {datetime.utcnow().isoformat()} -->",
@@ -131,42 +131,19 @@ def generate_svg(days):
     col = 0
     row = 0
     delay = 0.0
-    first_day_of_month = {}
 
-    # Precompute the first column of each month
-    for i, d in enumerate(days):
-        date_obj = datetime.strptime(d["date"], "%Y-%m-%d")
-        if date_obj.month not in first_day_of_month:
-            # Compute column for this day
-            col_idx = i // DAYS
-            first_day_of_month[date_obj.month] = col_idx
-
-    for i, d in enumerate(days):
+    for d in days:
         x = col * (BLOCK_SIZE + GAP)
-        y = row * (BLOCK_SIZE + GAP) + 20  # offset for month labels
+        y = row * (BLOCK_SIZE + GAP)
 
         count = d["contributionCount"]
-        date_str = d["date"]
-        date_obj = datetime.strptime(date_str, "%Y-%m-%d")
+        date = d["date"]
         color = block_color(count)
 
-        tooltip = f"{date_str} — {count} contribution{'s' if count != 1 else ''}"
-
-        # Month label & separator
-        if col == first_day_of_month[date_obj.month]:
-            # Month label
-            month_label = date_obj.strftime("%b")
-            svg.append(
-                f'<text x="{x}" y="14" font-size="10" fill="#5E3A8C" font-family="sans-serif">{month_label}</text>'
-            )
-            # Optional vertical line
-            svg.append(
-                f'<line x1="{x-2}" y1="20" x2="{x-2}" y2="{height}" '
-                f'stroke="#8e44ad" stroke-width="1" stroke-dasharray="2,2" />'
-            )
+        tooltip = f"{date} — {count} contribution{'s' if count != 1 else ''}"
 
         # Group block + tooltip + flower
-        svg.append('<g>')
+        svg.append(f'<g>')
         svg.append(f'<title>{tooltip}</title>')
 
         # Day block with border
