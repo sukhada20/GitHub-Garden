@@ -14,6 +14,7 @@ WEEKS = 53
 DAYS = 7
 
 BACKGROUND = "#F6F0FA"
+BORDER_COLOR = "#D2C2E6"
 
 LILAC_SCALE = [
     "#F6F0FA",  # 0
@@ -100,17 +101,20 @@ def flower_svg(cx, cy, count, delay):
         )
 
     return f"""
-    <g transform="scale(0)" style="transform-origin:{cx}px {cy}px">
-      <animateTransform
-        attributeName="transform"
-        type="scale"
-        from="0"
-        to="1"
-        begin="{delay:.2f}s"
-        dur="0.6s"
-        fill="freeze" />
-      {''.join(petals_svg)}
-      <circle cx="{cx}" cy="{cy}" r="2.8" fill="{FLOWER_CENTER}" />
+    <g>
+      <g transform="scale(0)" style="transform-origin:{cx}px {cy}px">
+        <animateTransform
+          attributeName="transform"
+          type="scale"
+          from="0"
+          to="1"
+          begin="{delay:.2f}s; bloom.end+4s"
+          dur="0.6s"
+          fill="freeze"
+          id="bloom"/>
+        {''.join(petals_svg)}
+        <circle cx="{cx}" cy="{cy}" r="2.8" fill="{FLOWER_CENTER}" />
+      </g>
     </g>
     """
 
@@ -137,19 +141,21 @@ def generate_svg(days):
         count = d["contributionCount"]
         color = block_color(count)
 
-        # Base block (streak clarity)
+        # Day block with border
         svg.append(
             f'<rect x="{x}" y="{y}" '
             f'width="{BLOCK_SIZE}" height="{BLOCK_SIZE}" '
-            f'rx="3" ry="3" fill="{color}" />'
+            f'rx="3" ry="3" '
+            f'fill="{color}" '
+            f'stroke="{BORDER_COLOR}" stroke-width="0.8" />'
         )
 
-        # Flower bloom overlay
+        # Flower overlay
         if count > 0:
             cx = x + BLOCK_SIZE / 2
             cy = y + BLOCK_SIZE / 2
             svg.append(flower_svg(cx, cy, count, delay))
-            delay += 0.025
+            delay += 0.03
 
         row += 1
         if row == DAYS:
