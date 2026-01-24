@@ -5,7 +5,7 @@ from datetime import datetime
 
 # ===================== CONFIG =====================
 
-USERNAME = "sukhada20"  
+USERNAME = "sukhada20" 
 TOKEN = os.environ["GH_TOKEN"]
 
 BLOCK_SIZE = 14
@@ -101,28 +101,26 @@ def flower_svg(cx, cy, count, delay):
         )
 
     return f"""
-    <g>
-      <g transform="scale(0)" style="transform-origin:{cx}px {cy}px">
-        <animateTransform
-          attributeName="transform"
-          type="scale"
-          from="0"
-          to="1"
-          begin="{delay:.2f}s; bloom.end+4s"
-          dur="0.6s"
-          fill="freeze"
-          id="bloom"/>
-        {''.join(petals_svg)}
-        <circle cx="{cx}" cy="{cy}" r="2.8" fill="{FLOWER_CENTER}" />
-      </g>
+    <g transform="scale(0)" style="transform-origin:{cx}px {cy}px">
+      <animateTransform
+        attributeName="transform"
+        type="scale"
+        from="0"
+        to="1"
+        begin="{delay:.2f}s; bloom.end+4s"
+        dur="0.6s"
+        fill="freeze"
+        id="bloom"/>
+      {''.join(petals_svg)}
+      <circle cx="{cx}" cy="{cy}" r="2.8" fill="{FLOWER_CENTER}" />
     </g>
     """
 
-# ===================== SVG GENERATION =====================
+# ===================== SVG GENERATION WITH MONTH LABELS =====================
 
 def generate_svg(days):
     width = WEEKS * (BLOCK_SIZE + GAP)
-    height = DAYS * (BLOCK_SIZE + GAP)
+    height = DAYS * (BLOCK_SIZE + GAP) + 20  # extra space for month labels
 
     svg = [
         f"<!-- regenerated at {datetime.utcnow().isoformat()} -->",
@@ -133,13 +131,39 @@ def generate_svg(days):
     col = 0
     row = 0
     delay = 0.0
+    last_month = None
+    month_drawn = set()
 
     for d in days:
         x = col * (BLOCK_SIZE + GAP)
-        y = row * (BLOCK_SIZE + GAP)
+        y = row * (BLOCK_SIZE + GAP) + 20  # offset for month labels
 
         count = d["contributionCount"]
+        date_str = d["date"]
+        date_obj = datetime.strptime(date_str, "%Y-%m-%d")
         color = block_color(count)
+
+        tooltip = f"{date_str} — {count} contribution{'s' if count != 1 else ''}"
+
+        # Month separator & label (only draw once per month)
+        if date_obj.month != last_month:
+            if date_obj.month not in month_drawn:
+                # Vertical dashed line for month
+                svg.append(
+                    f'<line x1="{x-2}" y1="20" x2="{x-2}" y2="{height}" '
+                    f'stroke="#8e44ad" stroke-width="1" stroke-dasharray="2,2" />'
+                )
+                # Month label
+                month_label = date_obj.strftime("%b")
+                svg.append(
+                    f'<text x="{x}" y="14" font-size="10" fill="#5E3A8C" font-family="sans-serif">{month_label}</text>'
+                )
+                month_drawn.add(date_obj.month)
+            last_month = date_obj.month
+
+        # Group block + tooltip + flower
+        svg.append(f'<g>')
+        svg.append(f'<title>{tooltip}</title>')
 
         # Day block with border
         svg.append(
@@ -156,6 +180,8 @@ def generate_svg(days):
             cy = y + BLOCK_SIZE / 2
             svg.append(flower_svg(cx, cy, count, delay))
             delay += 0.03
+
+        svg.append('</g>')
 
         row += 1
         if row == DAYS:
