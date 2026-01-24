@@ -5,7 +5,7 @@ from datetime import datetime
 
 # ===================== CONFIG =====================
 
-USERNAME = "<YOUR_GITHUB_USERNAME>"  # CHANGE THIS
+USERNAME = "sukhada20"  
 TOKEN = os.environ["GH_TOKEN"]
 
 BLOCK_SIZE = 14
