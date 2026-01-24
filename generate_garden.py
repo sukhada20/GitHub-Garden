@@ -29,6 +29,14 @@ HEADERS = {
     "Authorization": f"Bearer {TOKEN}"
 }
 
+LILAC_SCALE = [
+    "#F6F0FA",  # 0 contributions (very light)
+    "#E6D9F2",  # 1–2
+    "#C8AEE6",  # 3–5
+    "#A57BD8",  # 6–9
+    "#7E57C2"   # 10+
+]
+
 def block_color(count):
     if count == 0:
         return LILAC_SCALE[0]
