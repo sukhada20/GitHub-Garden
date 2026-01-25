@@ -5,7 +5,7 @@ from datetime import datetime
 
 # ===================== CONFIG =====================
 
-USERNAME = "sukhada20>" 
+USERNAME = "sukhada20" 
 TOKEN = os.environ["GH_TOKEN"]
 
 BLOCK = 14
