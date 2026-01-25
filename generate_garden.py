@@ -3,14 +3,12 @@ import math
 import requests
 from datetime import datetime
 
-# ===================== CONFIG =====================
-
 USERNAME = "sukhada20" 
 TOKEN = os.environ["GH_TOKEN"]
 
 BLOCK = 14
 GAP = 4
-LEFT_LABEL_SPACE = 32
+LEFT_LABEL_SPACE = 34
 TOP_LABEL_SPACE = 22
 
 WEEKS = 53
@@ -21,11 +19,11 @@ BORDER_COLOR = "#D2C2E6"
 TEXT_COLOR = "#5E3A8C"
 
 LILAC_SCALE = [
-    "#F6F0FA",  # 0
-    "#E6D9F2",  # 1–2
-    "#C8AEE6",  # 3–5
-    "#A57BD8",  # 6–9
-    "#7E57C2",  # 10+
+    "#F6F0FA",
+    "#E6D9F2",
+    "#C8AEE6",
+    "#A57BD8",
+    "#7E57C2",
 ]
 
 FLOWER_PETAL = "#B79AD9"
@@ -35,8 +33,6 @@ MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 DAY_LABELS = {1: "Mon", 3: "Wed", 5: "Fri"}
-
-# ===================== GITHUB QUERY =====================
 
 API_URL = "https://api.github.com/graphql"
 
@@ -59,14 +55,13 @@ query ($login: String!) {
 
 HEADERS = {"Authorization": f"Bearer {TOKEN}"}
 
-# ===================== DATA =====================
 
 def fetch_contributions():
     r = requests.post(
         API_URL,
         json={"query": QUERY, "variables": {"login": USERNAME}},
         headers=HEADERS,
-        timeout=30
+        timeout=30,
     )
     r.raise_for_status()
 
@@ -75,30 +70,33 @@ def fetch_contributions():
 
     days = []
     for w in weeks:
-        for d in w["contributionDays"]:
-            days.append(d)
+        days.extend(w["contributionDays"])
 
     return days[-(WEEKS * DAYS):]
 
-# ===================== VISUAL HELPERS =====================
 
 def block_color(count):
-    if count == 0: return LILAC_SCALE[0]
-    if count <= 2: return LILAC_SCALE[1]
-    if count <= 5: return LILAC_SCALE[2]
-    if count <= 9: return LILAC_SCALE[3]
+    if count == 0:
+        return LILAC_SCALE[0]
+    if count <= 2:
+        return LILAC_SCALE[1]
+    if count <= 5:
+        return LILAC_SCALE[2]
+    if count <= 9:
+        return LILAC_SCALE[3]
     return LILAC_SCALE[4]
+
 
 def flower_svg(cx, cy, count, delay):
     petals = min(6 + count, 10)
     radius = min(3 + count, 8)
 
-    circles = []
+    petals_svg = []
     for i in range(petals):
         angle = 2 * math.pi * i / petals
         px = cx + math.cos(angle) * radius
         py = cy + math.sin(angle) * radius
-        circles.append(
+        petals_svg.append(
             f'<circle cx="{px}" cy="{py}" r="2.4" fill="{FLOWER_PETAL}"/>'
         )
 
@@ -113,12 +111,11 @@ def flower_svg(cx, cy, count, delay):
         dur="0.6s"
         fill="freeze"
         id="bloom"/>
-      {''.join(circles)}
+      {''.join(petals_svg)}
       <circle cx="{cx}" cy="{cy}" r="2.6" fill="{FLOWER_CENTER}"/>
     </g>
     """
 
-# ===================== SVG GENERATION =====================
 
 def generate_svg(days):
     width = LEFT_LABEL_SPACE + WEEKS * (BLOCK + GAP)
@@ -129,45 +126,41 @@ def generate_svg(days):
         f'<rect width="100%" height="100%" fill="{BACKGROUND}"/>'
     ]
 
-    # ----- Day labels -----
+    # Day labels
     for row, label in DAY_LABELS.items():
         y = TOP_LABEL_SPACE + row * (BLOCK + GAP) + BLOCK - 2
         svg.append(
-            f'<text x="0" y="{y}" font-size="10" '
-            f'fill="{TEXT_COLOR}" font-family="monospace">{label}</text>'
+            f'<text x="2" y="{y}" font-size="10" fill="{TEXT_COLOR}" '
+            f'font-family="monospace">{label}</text>'
         )
 
-    delay = 0.0
     col = 0
     row = 0
-    last_month = None
+    delay = 0.0
 
-    for i, d in enumerate(days):
+    for d in days:
         date_obj = datetime.strptime(d["date"], "%Y-%m-%d")
-        month = date_obj.month
 
         x = LEFT_LABEL_SPACE + col * (BLOCK + GAP)
         y = TOP_LABEL_SPACE + row * (BLOCK + GAP)
 
-        # ----- Month labels -----
-        if row == 0 and month != last_month:
+        # Month label only on first day of month
+        if date_obj.day == 1:
             svg.append(
-                f'<text x="{x}" y="12" font-size="10" '
-                f'fill="{TEXT_COLOR}" font-family="monospace">'
-                f'{MONTH_NAMES[month - 1]}</text>'
+                f'<text x="{x}" y="12" font-size="10" fill="{TEXT_COLOR}" '
+                f'font-family="monospace">{MONTH_NAMES[date_obj.month - 1]}</text>'
             )
-            last_month = month
 
         count = d["contributionCount"]
         tooltip = f"{d['date']} — {count} contribution{'s' if count != 1 else ''}"
 
-        svg.append("<g>")
-        svg.append(f"<title>{tooltip}</title>")
-
+        # Rect with tooltip INSIDE rect (GitHub-safe)
         svg.append(
             f'<rect x="{x}" y="{y}" width="{BLOCK}" height="{BLOCK}" '
             f'rx="3" ry="3" fill="{block_color(count)}" '
-            f'stroke="{BORDER_COLOR}" stroke-width="0.8"/>'
+            f'stroke="{BORDER_COLOR}" stroke-width="0.8">'
+            f'<title>{tooltip}</title>'
+            f'</rect>'
         )
 
         if count > 0:
@@ -175,8 +168,6 @@ def generate_svg(days):
             cy = y + BLOCK / 2
             svg.append(flower_svg(cx, cy, count, delay))
             delay += 0.03
-
-        svg.append("</g>")
 
         row += 1
         if row == DAYS:
@@ -186,11 +177,9 @@ def generate_svg(days):
     svg.append("</svg>")
     return "\n".join(svg)
 
-# ===================== MAIN =====================
 
 if __name__ == "__main__":
     days = fetch_contributions()
     svg = generate_svg(days)
-
     with open("garden.svg", "w", encoding="utf-8") as f:
         f.write(svg)
