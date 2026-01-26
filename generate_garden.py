@@ -78,7 +78,7 @@ def fetch_contributions():
 def block_color(count):
     if count == 0:
         return LILAC_SCALE[0]
-    if count <= 2:
+    if count <= 1:
         return LILAC_SCALE[1]
     if count <= 5:
         return LILAC_SCALE[2]
