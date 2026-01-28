@@ -3,16 +3,15 @@ import math
 import requests
 from datetime import datetime
 
-USERNAME = "sukhada20" 
+# ================= CONFIG =================
+
+USERNAME = "sukhada20"
 TOKEN = os.environ["GH_TOKEN"]
 
 BLOCK = 14
 GAP = 4
 LEFT_LABEL_SPACE = 34
 TOP_LABEL_SPACE = 22
-
-WEEKS = 53
-DAYS = 7
 
 BACKGROUND = "#F6F0FA"
 BORDER_COLOR = "#D2C2E6"
@@ -55,6 +54,7 @@ query ($login: String!) {
 
 HEADERS = {"Authorization": f"Bearer {TOKEN}"}
 
+# ================= DATA =================
 
 def fetch_contributions():
     r = requests.post(
@@ -65,15 +65,11 @@ def fetch_contributions():
     )
     r.raise_for_status()
 
-    weeks = r.json()["data"]["user"]["contributionsCollection"][
-        "contributionCalendar"]["weeks"]
+    return r.json()["data"]["user"]["contributionsCollection"][
+        "contributionCalendar"]["weeks"
+    ]
 
-    days = []
-    for w in weeks:
-        days.extend(w["contributionDays"])
-
-    return days[-(WEEKS * DAYS):]
-
+# ================= RENDER =================
 
 def block_color(count):
     if count == 0:
@@ -107,19 +103,18 @@ def flower_svg(cx, cy, count, delay):
         type="scale"
         from="0"
         to="1"
-        begin="{delay:.2f}s; bloom.end+4s"
+        begin="{delay:.2f}s"
         dur="0.6s"
-        fill="freeze"
-        id="bloom"/>
+        fill="freeze"/>
       {''.join(petals_svg)}
       <circle cx="{cx}" cy="{cy}" r="2.6" fill="{FLOWER_CENTER}"/>
     </g>
     """
 
 
-def generate_svg(days):
-    width = LEFT_LABEL_SPACE + WEEKS * (BLOCK + GAP)
-    height = TOP_LABEL_SPACE + DAYS * (BLOCK + GAP)
+def generate_svg(weeks):
+    width = LEFT_LABEL_SPACE + len(weeks) * (BLOCK + GAP)
+    height = TOP_LABEL_SPACE + 7 * (BLOCK + GAP)
 
     svg = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}">',
@@ -134,52 +129,54 @@ def generate_svg(days):
             f'font-family="monospace">{label}</text>'
         )
 
-    col = 0
-    row = 0
     delay = 0.0
 
-    for d in days:
-        date_obj = datetime.strptime(d["date"], "%Y-%m-%d")
+    for col, week in enumerate(weeks):
+        for row, d in enumerate(week["contributionDays"]):
+            date_obj = datetime.strptime(d["date"], "%Y-%m-%d")
 
-        x = LEFT_LABEL_SPACE + col * (BLOCK + GAP)
-        y = TOP_LABEL_SPACE + row * (BLOCK + GAP)
+            x = LEFT_LABEL_SPACE + col * (BLOCK + GAP)
+            y = TOP_LABEL_SPACE + row * (BLOCK + GAP)
 
-        # Month label only on first day of month
-        if date_obj.day == 1:
+            if date_obj.day == 1:
+                svg.append(
+                    f'<text x="{x}" y="12" font-size="10" fill="{TEXT_COLOR}" '
+                    f'font-family="monospace">{MONTH_NAMES[date_obj.month - 1]}</text>'
+                )
+
+            count = d["contributionCount"]
+            tooltip = f"{d['date']} — {count} contribution{'s' if count != 1 else ''}"
+
             svg.append(
-                f'<text x="{x}" y="12" font-size="10" fill="{TEXT_COLOR}" '
-                f'font-family="monospace">{MONTH_NAMES[date_obj.month - 1]}</text>'
+                f'<rect x="{x}" y="{y}" width="{BLOCK}" height="{BLOCK}" '
+                f'rx="3" ry="3" fill="{block_color(count)}" '
+                f'stroke="{BORDER_COLOR}" stroke-width="0.8">'
+                f'<title>{tooltip}</title>'
+                f'</rect>'
             )
 
-        count = d["contributionCount"]
-        tooltip = f"{d['date']} — {count} contribution{'s' if count != 1 else ''}"
+            if count > 0:
+                cx = x + BLOCK / 2
+                cy = y + BLOCK / 2
+                svg.append(flower_svg(cx, cy, count, delay))
+                delay += 0.03
 
-        # Rect with tooltip INSIDE rect (GitHub-safe)
-        svg.append(
-            f'<rect x="{x}" y="{y}" width="{BLOCK}" height="{BLOCK}" '
-            f'rx="3" ry="3" fill="{block_color(count)}" '
-            f'stroke="{BORDER_COLOR}" stroke-width="0.8">'
-            f'<title>{tooltip}</title>'
-            f'</rect>'
-        )
-
-        if count > 0:
-            cx = x + BLOCK / 2
-            cy = y + BLOCK / 2
-            svg.append(flower_svg(cx, cy, count, delay))
-            delay += 0.03
-
-        row += 1
-        if row == DAYS:
-            row = 0
-            col += 1
+    # Debug timestamp (helps verify updates)
+    svg.append(
+        f'<text x="{width - 5}" y="{height - 5}" font-size="8" '
+        f'fill="{TEXT_COLOR}" text-anchor="end">'
+        f'Updated {datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")}</text>'
+    )
 
     svg.append("</svg>")
     return "\n".join(svg)
 
 
+# ================= MAIN =================
+
 if __name__ == "__main__":
-    days = fetch_contributions()
-    svg = generate_svg(days)
+    weeks = fetch_contributions()
+    svg = generate_svg(weeks)
+
     with open("garden.svg", "w", encoding="utf-8") as f:
         f.write(svg)
