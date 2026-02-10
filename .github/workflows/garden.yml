@@ -2,7 +2,7 @@ name: Update Lilac Garden
 
 on:
   schedule:
-    - cron: "0 */6 * * *"   
+    - cron: "30 18 * * *"
   workflow_dispatch:
 
 permissions:
@@ -32,9 +32,6 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-
           git add garden.svg
-          git diff --quiet garden.svg && echo "No changes in garden.svg" && exit 0
-
-          git commit -m "🪻 Update lilac contribution garden"
+          git commit -m "🪻 Update lilac contribution garden" || exit 0
           git push
