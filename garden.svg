@@ -1282,5 +1282,21 @@
 <rect x="970" y="22" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-04-05 — 0 contributions</title></rect>
 <rect x="970" y="40" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-04-06 — 0 contributions</title></rect>
 <rect x="970" y="58" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-04-07 — 0 contributions</title></rect>
-<rect x="970" y="76" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-04-08 — 0 contributions</title></rect>
+<rect x="970" y="76" width="14" height="14" rx="3" ry="3" fill="#A57BD8" stroke="#D2C2E6" stroke-width="0.8"><title>2026-04-08 — 6 contributions</title></rect>
+
+    <g transform="scale(0)" style="transform-origin:977.0px 83.0px">
+      <animateTransform
+        attributeName="transform"
+        type="scale"
+        from="0"
+        to="1"
+        begin="1.80s; bloom.end+4s"
+        dur="0.6s"
+        fill="freeze"
+        id="bloom"/>
+      <circle cx="985.0" cy="83.0" r="2.4" fill="#B79AD9"/><circle cx="983.4721359549995" cy="87.70228201833979" r="2.4" fill="#B79AD9"/><circle cx="979.4721359549995" cy="90.60845213036123" r="2.4" fill="#B79AD9"/><circle cx="974.5278640450005" cy="90.60845213036123" r="2.4" fill="#B79AD9"/><circle cx="970.5278640450005" cy="87.70228201833979" r="2.4" fill="#B79AD9"/><circle cx="969.0" cy="83.0" r="2.4" fill="#B79AD9"/><circle cx="970.5278640450005" cy="78.29771798166021" r="2.4" fill="#B79AD9"/><circle cx="974.5278640450005" cy="75.39154786963877" r="2.4" fill="#B79AD9"/><circle cx="979.4721359549995" cy="75.39154786963877" r="2.4" fill="#B79AD9"/><circle cx="983.4721359549995" cy="78.29771798166021" r="2.4" fill="#B79AD9"/>
+      <circle cx="977.0" cy="83.0" r="2.6" fill="#5E3A8C"/>
+    </g>
+    
+<rect x="970" y="94" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-04-09 — 0 contributions</title></rect>
 </svg>
