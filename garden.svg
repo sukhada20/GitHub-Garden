@@ -1311,7 +1311,7 @@
       <circle cx="977.0" cy="47.0" r="2.6" fill="#5E3A8C"/>
     </g>
     
-<rect x="970" y="58" width="14" height="14" rx="3" ry="3" fill="#E6D9F2" stroke="#D2C2E6" stroke-width="0.8"><title>2026-04-28 — 1 contribution</title></rect>
+<rect x="970" y="58" width="14" height="14" rx="3" ry="3" fill="#C8AEE6" stroke="#D2C2E6" stroke-width="0.8"><title>2026-04-28 — 4 contributions</title></rect>
 
     <g transform="scale(0)" style="transform-origin:977.0px 65.0px">
       <animateTransform
@@ -1323,8 +1323,24 @@
         dur="0.6s"
         fill="freeze"
         id="bloom"/>
-      <circle cx="981.0" cy="65.0" r="2.4" fill="#B79AD9"/><circle cx="979.493959207435" cy="68.12732592987211" r="2.4" fill="#B79AD9"/><circle cx="976.1099162641748" cy="68.89971164872729" r="2.4" fill="#B79AD9"/><circle cx="973.3961245283904" cy="66.73553495647023" r="2.4" fill="#B79AD9"/><circle cx="973.3961245283904" cy="63.26446504352977" r="2.4" fill="#B79AD9"/><circle cx="976.1099162641748" cy="61.1002883512727" r="2.4" fill="#B79AD9"/><circle cx="979.493959207435" cy="61.87267407012788" r="2.4" fill="#B79AD9"/>
+      <circle cx="984.0" cy="65.0" r="2.4" fill="#B79AD9"/><circle cx="982.6631189606246" cy="69.11449676604731" r="2.4" fill="#B79AD9"/><circle cx="979.1631189606246" cy="71.65739561406608" r="2.4" fill="#B79AD9"/><circle cx="974.8368810393754" cy="71.65739561406608" r="2.4" fill="#B79AD9"/><circle cx="971.3368810393754" cy="69.11449676604731" r="2.4" fill="#B79AD9"/><circle cx="970.0" cy="65.0" r="2.4" fill="#B79AD9"/><circle cx="971.3368810393754" cy="60.88550323395269" r="2.4" fill="#B79AD9"/><circle cx="974.8368810393754" cy="58.342604385933925" r="2.4" fill="#B79AD9"/><circle cx="979.1631189606246" cy="58.342604385933925" r="2.4" fill="#B79AD9"/><circle cx="982.6631189606246" cy="60.88550323395269" r="2.4" fill="#B79AD9"/>
       <circle cx="977.0" cy="65.0" r="2.6" fill="#5E3A8C"/>
+    </g>
+    
+<rect x="970" y="76" width="14" height="14" rx="3" ry="3" fill="#7E57C2" stroke="#D2C2E6" stroke-width="0.8"><title>2026-04-29 — 20 contributions</title></rect>
+
+    <g transform="scale(0)" style="transform-origin:977.0px 83.0px">
+      <animateTransform
+        attributeName="transform"
+        type="scale"
+        from="0"
+        to="1"
+        begin="1.89s; bloom.end+4s"
+        dur="0.6s"
+        fill="freeze"
+        id="bloom"/>
+      <circle cx="985.0" cy="83.0" r="2.4" fill="#B79AD9"/><circle cx="983.4721359549995" cy="87.70228201833979" r="2.4" fill="#B79AD9"/><circle cx="979.4721359549995" cy="90.60845213036123" r="2.4" fill="#B79AD9"/><circle cx="974.5278640450005" cy="90.60845213036123" r="2.4" fill="#B79AD9"/><circle cx="970.5278640450005" cy="87.70228201833979" r="2.4" fill="#B79AD9"/><circle cx="969.0" cy="83.0" r="2.4" fill="#B79AD9"/><circle cx="970.5278640450005" cy="78.29771798166021" r="2.4" fill="#B79AD9"/><circle cx="974.5278640450005" cy="75.39154786963877" r="2.4" fill="#B79AD9"/><circle cx="979.4721359549995" cy="75.39154786963877" r="2.4" fill="#B79AD9"/><circle cx="983.4721359549995" cy="78.29771798166021" r="2.4" fill="#B79AD9"/>
+      <circle cx="977.0" cy="83.0" r="2.6" fill="#5E3A8C"/>
     </g>
     
 </svg>
