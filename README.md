@@ -94,7 +94,7 @@ You can easily customize:
 * Animation speed and delay
 * Flower size and density
 * Label placement
-All configuration lives at the top of `generate_garden.py`.
+> All configuration lives at the top of `generate_garden.py`.
 
 ---
 
