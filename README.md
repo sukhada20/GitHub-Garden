@@ -103,7 +103,7 @@ All configuration lives at the top of `generate_garden.py`.
 * **GitHub-native constraints respected**
 * **No client-side scripting**
 * **Professional, subtle animation**
-The goal is to enhance a profile without breaking accessibility or platform rules.
+> The goal is to enhance a profile without breaking accessibility or platform rules.
 
 ---
 
