@@ -925,22 +925,7 @@
 <rect x="664" y="130" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-02-14 — 0 contributions</title></rect>
 <rect x="682" y="22" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-02-15 — 0 contributions</title></rect>
 <rect x="682" y="40" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-02-16 — 0 contributions</title></rect>
-<rect x="682" y="58" width="14" height="14" rx="3" ry="3" fill="#C8AEE6" stroke="#D2C2E6" stroke-width="0.8"><title>2026-02-17 — 3 contributions</title></rect>
-
-    <g transform="scale(0)" style="transform-origin:689.0px 65.0px">
-      <animateTransform
-        attributeName="transform"
-        type="scale"
-        from="0"
-        to="1"
-        begin="1.32s; bloom.end+4s"
-        dur="0.6s"
-        fill="freeze"
-        id="bloom"/>
-      <circle cx="695.0" cy="65.0" r="2.4" fill="#B79AD9"/><circle cx="693.5962666587138" cy="68.85672565811923" r="2.4" fill="#B79AD9"/><circle cx="690.0418890660015" cy="70.90884651807325" r="2.4" fill="#B79AD9"/><circle cx="686.0" cy="70.19615242270663" r="2.4" fill="#B79AD9"/><circle cx="683.3618442752845" cy="67.05212085995402" r="2.4" fill="#B79AD9"/><circle cx="683.3618442752845" cy="62.94787914004599" r="2.4" fill="#B79AD9"/><circle cx="686.0" cy="59.80384757729337" r="2.4" fill="#B79AD9"/><circle cx="690.0418890660015" cy="59.09115348192675" r="2.4" fill="#B79AD9"/><circle cx="693.5962666587138" cy="61.14327434188076" r="2.4" fill="#B79AD9"/>
-      <circle cx="689.0" cy="65.0" r="2.6" fill="#5E3A8C"/>
-    </g>
-    
+<rect x="682" y="58" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-02-17 — 0 contributions</title></rect>
 <rect x="682" y="76" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-02-18 — 0 contributions</title></rect>
 <rect x="682" y="94" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-02-19 — 0 contributions</title></rect>
 <rect x="682" y="112" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-02-20 — 0 contributions</title></rect>
@@ -962,22 +947,7 @@
 <rect x="718" y="130" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-03-07 — 0 contributions</title></rect>
 <rect x="736" y="22" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-03-08 — 0 contributions</title></rect>
 <rect x="736" y="40" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-03-09 — 0 contributions</title></rect>
-<rect x="736" y="58" width="14" height="14" rx="3" ry="3" fill="#E6D9F2" stroke="#D2C2E6" stroke-width="0.8"><title>2026-03-10 — 1 contribution</title></rect>
-
-    <g transform="scale(0)" style="transform-origin:743.0px 65.0px">
-      <animateTransform
-        attributeName="transform"
-        type="scale"
-        from="0"
-        to="1"
-        begin="1.35s; bloom.end+4s"
-        dur="0.6s"
-        fill="freeze"
-        id="bloom"/>
-      <circle cx="747.0" cy="65.0" r="2.4" fill="#B79AD9"/><circle cx="745.493959207435" cy="68.12732592987211" r="2.4" fill="#B79AD9"/><circle cx="742.1099162641748" cy="68.89971164872729" r="2.4" fill="#B79AD9"/><circle cx="739.3961245283904" cy="66.73553495647023" r="2.4" fill="#B79AD9"/><circle cx="739.3961245283904" cy="63.26446504352977" r="2.4" fill="#B79AD9"/><circle cx="742.1099162641748" cy="61.1002883512727" r="2.4" fill="#B79AD9"/><circle cx="745.493959207435" cy="61.87267407012788" r="2.4" fill="#B79AD9"/>
-      <circle cx="743.0" cy="65.0" r="2.6" fill="#5E3A8C"/>
-    </g>
-    
+<rect x="736" y="58" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-03-10 — 0 contributions</title></rect>
 <rect x="736" y="76" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-03-11 — 0 contributions</title></rect>
 <rect x="736" y="94" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-03-12 — 0 contributions</title></rect>
 <rect x="736" y="112" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-03-13 — 0 contributions</title></rect>
@@ -988,22 +958,7 @@
 <rect x="754" y="76" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-03-18 — 0 contributions</title></rect>
 <rect x="754" y="94" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-03-19 — 0 contributions</title></rect>
 <rect x="754" y="112" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-03-20 — 0 contributions</title></rect>
-<rect x="754" y="130" width="14" height="14" rx="3" ry="3" fill="#C8AEE6" stroke="#D2C2E6" stroke-width="0.8"><title>2026-03-21 — 3 contributions</title></rect>
-
-    <g transform="scale(0)" style="transform-origin:761.0px 137.0px">
-      <animateTransform
-        attributeName="transform"
-        type="scale"
-        from="0"
-        to="1"
-        begin="1.38s; bloom.end+4s"
-        dur="0.6s"
-        fill="freeze"
-        id="bloom"/>
-      <circle cx="767.0" cy="137.0" r="2.4" fill="#B79AD9"/><circle cx="765.5962666587138" cy="140.85672565811925" r="2.4" fill="#B79AD9"/><circle cx="762.0418890660015" cy="142.90884651807326" r="2.4" fill="#B79AD9"/><circle cx="758.0" cy="142.19615242270663" r="2.4" fill="#B79AD9"/><circle cx="755.3618442752845" cy="139.05212085995402" r="2.4" fill="#B79AD9"/><circle cx="755.3618442752845" cy="134.94787914004598" r="2.4" fill="#B79AD9"/><circle cx="758.0" cy="131.80384757729337" r="2.4" fill="#B79AD9"/><circle cx="762.0418890660015" cy="131.09115348192674" r="2.4" fill="#B79AD9"/><circle cx="765.5962666587138" cy="133.14327434188075" r="2.4" fill="#B79AD9"/>
-      <circle cx="761.0" cy="137.0" r="2.6" fill="#5E3A8C"/>
-    </g>
-    
+<rect x="754" y="130" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-03-21 — 0 contributions</title></rect>
 <rect x="772" y="22" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-03-22 — 0 contributions</title></rect>
 <rect x="772" y="40" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-03-23 — 0 contributions</title></rect>
 <rect x="772" y="58" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-03-24 — 0 contributions</title></rect>
@@ -1023,7 +978,7 @@
         type="scale"
         from="0"
         to="1"
-        begin="1.41s; bloom.end+4s"
+        begin="1.32s; bloom.end+4s"
         dur="0.6s"
         fill="freeze"
         id="bloom"/>
@@ -1045,7 +1000,7 @@
         type="scale"
         from="0"
         to="1"
-        begin="1.44s; bloom.end+4s"
+        begin="1.35s; bloom.end+4s"
         dur="0.6s"
         fill="freeze"
         id="bloom"/>
@@ -1063,7 +1018,7 @@
         type="scale"
         from="0"
         to="1"
-        begin="1.47s; bloom.end+4s"
+        begin="1.38s; bloom.end+4s"
         dur="0.6s"
         fill="freeze"
         id="bloom"/>
@@ -1085,7 +1040,7 @@
         type="scale"
         from="0"
         to="1"
-        begin="1.50s; bloom.end+4s"
+        begin="1.41s; bloom.end+4s"
         dur="0.6s"
         fill="freeze"
         id="bloom"/>
@@ -1105,7 +1060,7 @@
         type="scale"
         from="0"
         to="1"
-        begin="1.53s; bloom.end+4s"
+        begin="1.44s; bloom.end+4s"
         dur="0.6s"
         fill="freeze"
         id="bloom"/>
@@ -1121,7 +1076,7 @@
         type="scale"
         from="0"
         to="1"
-        begin="1.56s; bloom.end+4s"
+        begin="1.47s; bloom.end+4s"
         dur="0.6s"
         fill="freeze"
         id="bloom"/>
@@ -1131,7 +1086,7 @@
     
 <rect x="844" y="130" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-04-25 — 0 contributions</title></rect>
 <rect x="862" y="22" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-04-26 — 0 contributions</title></rect>
-<rect x="862" y="40" width="14" height="14" rx="3" ry="3" fill="#A57BD8" stroke="#D2C2E6" stroke-width="0.8"><title>2026-04-27 — 8 contributions</title></rect>
+<rect x="862" y="40" width="14" height="14" rx="3" ry="3" fill="#C8AEE6" stroke="#D2C2E6" stroke-width="0.8"><title>2026-04-27 — 2 contributions</title></rect>
 
     <g transform="scale(0)" style="transform-origin:869.0px 47.0px">
       <animateTransform
@@ -1139,11 +1094,11 @@
         type="scale"
         from="0"
         to="1"
-        begin="1.59s; bloom.end+4s"
+        begin="1.50s; bloom.end+4s"
         dur="0.6s"
         fill="freeze"
         id="bloom"/>
-      <circle cx="877.0" cy="47.0" r="2.4" fill="#B79AD9"/><circle cx="875.4721359549995" cy="51.70228201833979" r="2.4" fill="#B79AD9"/><circle cx="871.4721359549995" cy="54.60845213036123" r="2.4" fill="#B79AD9"/><circle cx="866.5278640450005" cy="54.60845213036123" r="2.4" fill="#B79AD9"/><circle cx="862.5278640450005" cy="51.70228201833979" r="2.4" fill="#B79AD9"/><circle cx="861.0" cy="47.0" r="2.4" fill="#B79AD9"/><circle cx="862.5278640450005" cy="42.29771798166021" r="2.4" fill="#B79AD9"/><circle cx="866.5278640450005" cy="39.39154786963877" r="2.4" fill="#B79AD9"/><circle cx="871.4721359549995" cy="39.39154786963877" r="2.4" fill="#B79AD9"/><circle cx="875.4721359549995" cy="42.29771798166021" r="2.4" fill="#B79AD9"/>
+      <circle cx="874.0" cy="47.0" r="2.4" fill="#B79AD9"/><circle cx="872.5355339059328" cy="50.53553390593274" r="2.4" fill="#B79AD9"/><circle cx="869.0" cy="52.0" r="2.4" fill="#B79AD9"/><circle cx="865.4644660940672" cy="50.53553390593274" r="2.4" fill="#B79AD9"/><circle cx="864.0" cy="47.0" r="2.4" fill="#B79AD9"/><circle cx="865.4644660940672" cy="43.46446609406726" r="2.4" fill="#B79AD9"/><circle cx="869.0" cy="42.0" r="2.4" fill="#B79AD9"/><circle cx="872.5355339059328" cy="43.46446609406726" r="2.4" fill="#B79AD9"/>
       <circle cx="869.0" cy="47.0" r="2.6" fill="#5E3A8C"/>
     </g>
     
@@ -1155,7 +1110,7 @@
         type="scale"
         from="0"
         to="1"
-        begin="1.62s; bloom.end+4s"
+        begin="1.53s; bloom.end+4s"
         dur="0.6s"
         fill="freeze"
         id="bloom"/>
@@ -1171,7 +1126,7 @@
         type="scale"
         from="0"
         to="1"
-        begin="1.65s; bloom.end+4s"
+        begin="1.56s; bloom.end+4s"
         dur="0.6s"
         fill="freeze"
         id="bloom"/>
@@ -1189,7 +1144,7 @@
         type="scale"
         from="0"
         to="1"
-        begin="1.68s; bloom.end+4s"
+        begin="1.59s; bloom.end+4s"
         dur="0.6s"
         fill="freeze"
         id="bloom"/>
@@ -1233,7 +1188,7 @@
         type="scale"
         from="0"
         to="1"
-        begin="1.71s; bloom.end+4s"
+        begin="1.62s; bloom.end+4s"
         dur="0.6s"
         fill="freeze"
         id="bloom"/>
@@ -1256,7 +1211,7 @@
         type="scale"
         from="0"
         to="1"
-        begin="1.74s; bloom.end+4s"
+        begin="1.65s; bloom.end+4s"
         dur="0.6s"
         fill="freeze"
         id="bloom"/>
@@ -1272,7 +1227,7 @@
         type="scale"
         from="0"
         to="1"
-        begin="1.77s; bloom.end+4s"
+        begin="1.68s; bloom.end+4s"
         dur="0.6s"
         fill="freeze"
         id="bloom"/>
@@ -1290,7 +1245,7 @@
         type="scale"
         from="0"
         to="1"
-        begin="1.80s; bloom.end+4s"
+        begin="1.71s; bloom.end+4s"
         dur="0.6s"
         fill="freeze"
         id="bloom"/>
@@ -1298,5 +1253,21 @@
       <circle cx="977.0" cy="83.0" r="2.6" fill="#5E3A8C"/>
     </g>
     
-<rect x="970" y="94" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-06-11 — 0 contributions</title></rect>
+<rect x="970" y="94" width="14" height="14" rx="3" ry="3" fill="#E6D9F2" stroke="#D2C2E6" stroke-width="0.8"><title>2026-06-11 — 1 contribution</title></rect>
+
+    <g transform="scale(0)" style="transform-origin:977.0px 101.0px">
+      <animateTransform
+        attributeName="transform"
+        type="scale"
+        from="0"
+        to="1"
+        begin="1.74s; bloom.end+4s"
+        dur="0.6s"
+        fill="freeze"
+        id="bloom"/>
+      <circle cx="981.0" cy="101.0" r="2.4" fill="#B79AD9"/><circle cx="979.493959207435" cy="104.12732592987211" r="2.4" fill="#B79AD9"/><circle cx="976.1099162641748" cy="104.89971164872729" r="2.4" fill="#B79AD9"/><circle cx="973.3961245283904" cy="102.73553495647023" r="2.4" fill="#B79AD9"/><circle cx="973.3961245283904" cy="99.26446504352977" r="2.4" fill="#B79AD9"/><circle cx="976.1099162641748" cy="97.10028835127271" r="2.4" fill="#B79AD9"/><circle cx="979.493959207435" cy="97.87267407012789" r="2.4" fill="#B79AD9"/>
+      <circle cx="977.0" cy="101.0" r="2.6" fill="#5E3A8C"/>
+    </g>
+    
+<rect x="970" y="112" width="14" height="14" rx="3" ry="3" fill="#F6F0FA" stroke="#D2C2E6" stroke-width="0.8"><title>2026-06-12 — 0 contributions</title></rect>
 </svg>
